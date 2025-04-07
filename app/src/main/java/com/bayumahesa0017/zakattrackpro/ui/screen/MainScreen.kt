@@ -3,10 +3,14 @@ package com.bayumahesa0017.zakattrackpro.ui.screen
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -76,6 +80,21 @@ fun ScreenContent(modifier: Modifier = Modifier){
             contentDescription = stringResource(R.string.home_screen),
             contentScale = ContentScale.Crop
         )
+
+        Row (modifier = Modifier.fillMaxWidth().padding(16.dp)){
+            ElevatedButton(onClick = {}, modifier = Modifier.weight(1f).padding(end = 10.dp), colors = ButtonDefaults.buttonColors(
+                Color.Gray)) {
+                Text(
+                    text = "Zakat fitrah"
+                )
+            }
+            ElevatedButton(onClick = {}, modifier = Modifier.weight(1f).padding(start = 10.dp), colors = ButtonDefaults.buttonColors(
+                Color.Gray)) {
+            Text(
+                text = "Zakat Profesi"
+            )
+        }
+        }
     }
 }
 
