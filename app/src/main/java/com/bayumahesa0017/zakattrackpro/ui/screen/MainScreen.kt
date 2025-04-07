@@ -63,12 +63,15 @@ fun MainScreen(navController : NavHostController){
             )
         }
     ){ innerPadding ->
-        ScreenContent(Modifier.padding(innerPadding))
+        ScreenContent(
+            modifier = Modifier.padding(innerPadding),
+            navController = navController
+        )
     }
 }
 
 @Composable
-fun ScreenContent(modifier: Modifier = Modifier){
+fun ScreenContent(modifier: Modifier = Modifier, navController: NavHostController){
     Column (
         modifier = modifier.
         fillMaxSize().
@@ -82,7 +85,9 @@ fun ScreenContent(modifier: Modifier = Modifier){
         )
 
         Row (modifier = Modifier.fillMaxWidth().padding(16.dp)){
-            ElevatedButton(onClick = {}, modifier = Modifier.weight(1f).padding(end = 10.dp), colors = ButtonDefaults.buttonColors(
+            ElevatedButton(onClick = {
+                navController.navigate(Screen.ZakatFitrah.route)
+            }, modifier = Modifier.weight(1f).padding(end = 10.dp), colors = ButtonDefaults.buttonColors(
                 Color.Gray)) {
                 Text(
                     text = "Zakat fitrah"
