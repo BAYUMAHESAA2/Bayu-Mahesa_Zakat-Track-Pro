@@ -25,12 +25,12 @@ import com.bayumahesa0017.zakattrackpro.ui.theme.ZakatTrackProTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen(navController: NavHostController){
-    Scaffold (
-        topBar ={
+fun AboutScreen(navController: NavHostController) {
+    Scaffold(
+        topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.kembali),
@@ -49,9 +49,13 @@ fun AboutScreen(navController: NavHostController){
                 )
             )
         }
-    ){ innerPadding ->
-       Text( text = stringResource(R.string.descption),
-        modifier = Modifier.padding(innerPadding).padding(16.dp))
+    ) { innerPadding ->
+        Text(
+            text = stringResource(R.string.descption),
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(16.dp)
+        )
     }
 }
 

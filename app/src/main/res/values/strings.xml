@@ -2,6 +2,7 @@
     <string name="app_name">ZakatTrackPro</string>
     <string name="home_screen">Tampilan Awal</string>
     <string name="Zakatfitrah_screen">Zakat Fitrah</string>
+    <string name="ZakatProfesi_screen">Zakat Profesi</string>
     <string name="about_screen">Tentang Aplikasi</string>
     <string name="descption">Aplikasi ini bertujuan untuk menghitung zakat fitrah keluarga anda
     dengan hitungan yang telah sama oleh Baznas</string>

@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bayumahesa0017.zakattrackpro.ui.screen.AboutScreen
 import com.bayumahesa0017.zakattrackpro.ui.screen.MainScreen
 import com.bayumahesa0017.zakattrackpro.ui.screen.ZakatFitrah
+import com.bayumahesa0017.zakattrackpro.ui.screen.ZakatProfesi
 
 
 @Composable
@@ -24,6 +25,9 @@ fun SetUpNavGraph(navController: NavHostController = rememberNavController()){
         }
         composable(route = Screen.ZakatFitrah.route ) {
             ZakatFitrah(navController)
+        }
+        composable(route = Screen.ZakatProfesi.route) {
+            ZakatProfesi(navController)
         }
     }
 }

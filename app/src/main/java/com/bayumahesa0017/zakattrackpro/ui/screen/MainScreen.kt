@@ -36,9 +36,9 @@ import com.bayumahesa0017.zakattrackpro.ui.theme.ZakatTrackProTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController : NavHostController){
-    Scaffold (
-        topBar ={
+fun MainScreen(navController: NavHostController) {
+    Scaffold(
+        topBar = {
             TopAppBar(
                 title = {
                     Text(
@@ -62,7 +62,7 @@ fun MainScreen(navController : NavHostController){
                 }
             )
         }
-    ){ innerPadding ->
+    ) { innerPadding ->
         ScreenContent(
             modifier = Modifier.padding(innerPadding),
             navController = navController
@@ -71,34 +71,52 @@ fun MainScreen(navController : NavHostController){
 }
 
 @Composable
-fun ScreenContent(modifier: Modifier = Modifier, navController: NavHostController){
-    Column (
-        modifier = modifier.
-        fillMaxSize().
-        padding(16.dp),
+fun ScreenContent(modifier: Modifier = Modifier, navController: NavHostController) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Image(
             painter = painterResource(id = R.drawable.payzakat),
             contentDescription = stringResource(R.string.home_screen),
             contentScale = ContentScale.Crop
         )
 
-        Row (modifier = Modifier.fillMaxWidth().padding(16.dp)){
-            ElevatedButton(onClick = {
-                navController.navigate(Screen.ZakatFitrah.route)
-            }, modifier = Modifier.weight(1f).padding(end = 10.dp), colors = ButtonDefaults.buttonColors(
-                Color.Gray)) {
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)) {
+            ElevatedButton(
+                onClick = {
+                    navController.navigate(Screen.ZakatFitrah.route)
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    Color.Gray
+                )
+            ) {
                 Text(
                     text = "Zakat fitrah"
                 )
             }
-            ElevatedButton(onClick = {}, modifier = Modifier.weight(1f).padding(start = 10.dp), colors = ButtonDefaults.buttonColors(
-                Color.Gray)) {
-            Text(
-                text = "Zakat Profesi"
-            )
-        }
+            ElevatedButton(
+                onClick = {
+                    navController.navigate(Screen.ZakatProfesi.route)
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    Color.Gray
+                )
+            ) {
+                Text(
+                    text = "Zakat Profesi"
+                )
+            }
         }
     }
 }

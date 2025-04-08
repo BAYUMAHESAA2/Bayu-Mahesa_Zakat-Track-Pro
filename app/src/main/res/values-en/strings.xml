@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZakatTrackPro</string>
+    <string name="home_screen">Initial View</string>
+    <string name="Zakatfitrah_screen">Zakat al-Fitr</string>
+    <string name="ZakatProfesi_screen">Professional Zakat</string>
+    <string name="about_screen">About the App</string>
+    <string name="descption">This application aims to calculate your family\'s zakat fitrah with the same calculation as Baznas</string>
+    <string name="kembali">Back</string>
+    <string name="informasi">Zakat fitrah must be paid by every Muslim in the amount of 2.5 kg of rice or the equivalent of 2.5 kg of rice.</string>
+</resources>

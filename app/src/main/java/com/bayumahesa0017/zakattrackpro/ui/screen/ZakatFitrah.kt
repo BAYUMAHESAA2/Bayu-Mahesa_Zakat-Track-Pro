@@ -47,9 +47,9 @@
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ZakatFitrah(navController : NavHostController){
+    fun ZakatFitrah(navController: NavHostController) {
         val context = LocalContext.current
-        var jumlahOrang by remember { mutableIntStateOf (1) }
+        var jumlahOrang by remember { mutableIntStateOf(1) }
         val opsiOrang = (1..10).toList()
         var expanded by remember { mutableStateOf(false) }
 
@@ -64,7 +64,7 @@
             else -> "Rp. ${jumlahUang * jumlahOrang}"
         }
 
-        fun shareResult(){
+        fun shareResult() {
             val sharePesan = """
                 Hasil Perhitungan Zakat Fitrah:
                 
@@ -80,18 +80,18 @@
             context.startActivity(Intent.createChooser(intent, "Bagikan Hasil Zakat Fitrah"))
         }
 
-        Scaffold (
-            topBar ={
+        Scaffold(
+            topBar = {
                 TopAppBar(
                     navigationIcon = {
-                    IconButton(onClick = {navController.popBackStack()}) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.kembali),
-                            tint = Color.White
-                        )
-                    }
-                },
+                        IconButton(onClick = { navController.popBackStack() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = stringResource(R.string.kembali),
+                                tint = Color.White
+                            )
+                        }
+                    },
                     title = {
                         Text(
                             text = stringResource(id = R.string.Zakatfitrah_screen)
@@ -124,32 +124,39 @@
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             }
-        ){ innerPadding ->
+        ) { innerPadding ->
             Column(
-                modifier = Modifier.
-                padding(innerPadding).fillMaxSize().padding(16.dp),
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize()
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 ExposedDropdownMenuBox(
                     expanded = expanded,
-                    onExpandedChange = { expanded = !expanded}
+                    onExpandedChange = { expanded = !expanded }
                 ) {
                     OutlinedTextField(
                         value = jumlahOrang.toString(),
                         onValueChange = {},
                         readOnly = true,
                         label = { Text("Jumlah Orang") },
-                        trailingIcon = {  ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)},
-                        modifier = Modifier.fillMaxWidth().menuAnchor()
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .menuAnchor()
                     )
                     ExposedDropdownMenu(
                         expanded = expanded,
-                        onDismissRequest = { expanded = false}
+                        onDismissRequest = { expanded = false }
                     ) {
-                        opsiOrang.forEach {
-                            option -> DropdownMenuItem(
-                                text = {Text(
-                                    "$option Orang") },
+                        opsiOrang.forEach { option ->
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        "$option Orang"
+                                    )
+                                },
                                 onClick = {
                                     jumlahOrang = option
                                     expanded = false
@@ -163,26 +170,28 @@
                     text = "Jenis Zakat Fitrah",
                     style = MaterialTheme.typography.titleMedium
                 )
-                Row (
+                Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ){
-                    Row (verticalAlignment = Alignment.CenterVertically
-                    ){
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         RadioButton(
                             selected = typeZakat == "Beras",
-                            onClick = {typeZakat = "Beras"}
+                            onClick = { typeZakat = "Beras" }
                         )
                         Text(
                             text = "Beras (2.5Kg)",
                             modifier = Modifier.padding(start = 8.dp)
                         )
                     }
-                    Row (verticalAlignment = Alignment.CenterVertically
-                    ){
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         RadioButton(
                             selected = typeZakat == "Uang",
-                            onClick = {typeZakat = "Uang"}
+                            onClick = { typeZakat = "Uang" }
                         )
                         Text(
                             text = "Uang (Rp. 47000)",
@@ -191,16 +200,16 @@
                     }
                 }
                 Card(
-                    modifier =  Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
                         contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 ) {
-                    Column (
+                    Column(
                         modifier = Modifier.padding(16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ){
+                    ) {
                         Text(
                             text = "Total Zakat Fitrah"
                         )
