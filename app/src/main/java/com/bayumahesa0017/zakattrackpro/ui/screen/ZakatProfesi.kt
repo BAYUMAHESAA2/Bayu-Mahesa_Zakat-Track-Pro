@@ -150,12 +150,12 @@ fun ZakatProfesi(navController: NavHostController) {
                     val bonusValue = bonus.toDoubleOrNull() ?: 0.0
                     val totalIncome = income + bonusValue
 
-                    // Calculate zakat (2.5% of total income)
+
                     totalZakat = totalIncome * 0.025
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
+                    containerColor = Color.LightGray,
                     contentColor = Color.Black
                 )
             ) {
@@ -166,7 +166,7 @@ fun ZakatProfesi(navController: NavHostController) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
                         contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 ) {

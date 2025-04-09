@@ -44,7 +44,7 @@ fun AboutScreen(navController: NavHostController) {
                     )
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.onErrorContainer,
+                    containerColor = Color.DarkGray,
                     titleContentColor = MaterialTheme.colorScheme.errorContainer
                 )
             )
