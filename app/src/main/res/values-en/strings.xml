@@ -3,9 +3,27 @@
     <string name="app_name">ZakatTrackPro</string>
     <string name="home_screen">Initial View</string>
     <string name="Zakatfitrah_screen">Zakat al-Fitr</string>
-    <string name="ZakatProfesi_screen">Professional Zakat</string>
+    <string name="uang">Money (47.000 IDR)</string>
+    <string name="jumlahorang">Number of people</string>
+    <string name="orang">%1$d People</string>
+    <string name="ZakatProfesi_screen">Profession Zakat</string>
     <string name="about_screen">About the App</string>
     <string name="descption">This application aims to calculate your family\'s zakat fitrah with the same calculation as Baznas</string>
     <string name="kembali">Back</string>
+    <string name="bagikan">Share</string>
+    <string name="bagikan_hasil">Number of People: %d.\nType Zakat: %s.\nMust Have pay Zakat: %s.</string>
+    <string name="bagikan_hasi_Profesi">Results of Professional Zakat Calculation\n\nMonthly Income: %1$sIDR.\nBonus/THR: %2$s\nTotal Zakat: %3$s</string>
     <string name="informasi">Zakat fitrah must be paid by every Muslim in the amount of 2.5 kg of rice or the equivalent of 2.5 kg of rice.</string>
+    <string name="beras">Rice (2.5Kg)</string>
+
+    <string name="pendPerbulan">Monthly Income</string>
+    <string name="errorpend">Enter monthly income</string>
+    <string name="hitungzakat">Calculate Zakat</string>
+    <string name="bonusthr">Bonus, THR, and others</string>
+    <string name="jumlahzakat">Your income zakat amount:</string>
+    <string name="totalzakatfitrah">Total Zakat Fitrah</string>
+    <string name="untukorang">For %1$d People</string>
+    <string name="jeniszakatfitrah">Type Zakat Fitrah</string>
+    <string name="zakat_beras_format">%.1f kg of Rice</string>
+    <string name="zakat_uang_format"> %d IDR</string>
 </resources>

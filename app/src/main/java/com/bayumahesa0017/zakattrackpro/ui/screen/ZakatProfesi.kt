@@ -117,13 +117,13 @@ fun ZakatProfesi(navController: NavHostController) {
                     pemasukanPerbulan = newValue.filter { it.isDigit() }
                     lihatError = false
                 },
-                label = { Text("Pendapatan Perbulan") },
+                label = { Text(stringResource(R.string.pendPerbulan)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth(),
                 isError = lihatError && pemasukanPerbulan.isEmpty(),
                 supportingText = {
                     if (lihatError && pemasukanPerbulan.isEmpty()) {
-                        Text("Masukkan pendapatan bulanan")
+                        Text(stringResource(R.string.errorpend))
                     }
                 }
             )
@@ -134,7 +134,7 @@ fun ZakatProfesi(navController: NavHostController) {
                     bonus = newValue.filter { it.isDigit() }
                     lihatError = false
                 },
-                label = { Text("Bonus, THR dan lainnya") },
+                label = { Text(stringResource(R.string.bonusthr)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -150,7 +150,7 @@ fun ZakatProfesi(navController: NavHostController) {
                     val bonusValue = bonus.toDoubleOrNull() ?: 0.0
                     val totalIncome = income + bonusValue
 
-                    // Calculate zakat (2.5% of total income)
+
                     totalZakat = totalIncome * 0.025
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -159,7 +159,7 @@ fun ZakatProfesi(navController: NavHostController) {
                     contentColor = Color.Black
                 )
             ) {
-                Text("Hitung Zakat")
+                Text(stringResource(R.string.hitungzakat))
             }
 
             if (totalZakat > 0) {
@@ -175,7 +175,7 @@ fun ZakatProfesi(navController: NavHostController) {
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Jumlah zakat penghasilan Anda:",
+                            text = stringResource(R.string.jumlahzakat),
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
@@ -206,7 +206,7 @@ fun ZakatProfesi(navController: NavHostController) {
 
                             Button(
                                 onClick = {
-                                    shareHasilZakat(
+                                    shareResult(
                                         context = context,
                                         pendapatanPerbulan = pemasukanPerbulan,
                                         bonus = bonus,
@@ -220,7 +220,7 @@ fun ZakatProfesi(navController: NavHostController) {
                                     contentColor = Color.Black
                                 )
                             ) {
-                                Text("Bagikan Hasil")
+                                Text(stringResource(R.string.bagikan))
                             }
                         }
                     }
@@ -229,33 +229,30 @@ fun ZakatProfesi(navController: NavHostController) {
         }
     }
 }
-
-private fun shareHasilZakat(
+fun shareResult(
     context: Context,
     pendapatanPerbulan: String,
     bonus: String,
     totalZakat: Double,
     formatter: DecimalFormat
 ) {
-    fun formatAmount(value: String): String {
-        val amount = value.toDoubleOrNull() ?: 0.0
-        return "Rp. ${formatter.format(amount)}"
-    }
+    val formattedPendapatan = formatter.format(pendapatanPerbulan.toDoubleOrNull() ?: 0.0)
+    val formattedBonus = formatter.format(bonus.toDoubleOrNull() ?: 0.0)
+    val formattedZakat = formatter.format(totalZakat)
 
-    val shareMessage = buildString {
-        append("Hasil Perhitungan Zakat Profesi\n\n")
-        append("Pendapatan per bulan: ${formatAmount(pendapatanPerbulan)}\n")
-        append("Bonus/THR: ${formatAmount(bonus)}\n")
-        append("Total Zakat: Rp. ${formatter.format(totalZakat)}\n\n")
-        append("Dihitung menggunakan Aplikasi Zakat Track Pro")
-    }
+    val message = context.getString(
+        R.string.bagikan_hasi_Profesi,
+        formattedPendapatan,
+        formattedBonus,
+        formattedZakat
+    )
 
-    val sendIntent: Intent = Intent().apply {
-        action = Intent.ACTION_SEND
-        putExtra(Intent.EXTRA_TEXT, shareMessage)
+    val share = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
     }
 
-    val shareIntent = Intent.createChooser(sendIntent, null)
-    context.startActivity(shareIntent)
+    if (share.resolveActivity(context.packageManager) != null) {
+        context.startActivity(share)
+    }
 }

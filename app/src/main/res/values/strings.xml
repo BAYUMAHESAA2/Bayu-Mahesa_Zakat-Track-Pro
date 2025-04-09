@@ -2,10 +2,29 @@
     <string name="app_name">ZakatTrackPro</string>
     <string name="home_screen">Tampilan Awal</string>
     <string name="Zakatfitrah_screen">Zakat Fitrah</string>
+    <string name="beras">Beras (2.5Kg)</string>
+    <string name="uang">Uang (Rp. 47000)</string>
+    <string name="jumlahorang">Jumlah Orang</string>
+    <string name="orang">%1$d Orang</string>
     <string name="ZakatProfesi_screen">Zakat Profesi</string>
     <string name="about_screen">Tentang Aplikasi</string>
     <string name="descption">Aplikasi ini bertujuan untuk menghitung zakat fitrah keluarga anda
     dengan hitungan yang telah sama oleh Baznas</string>
     <string name="kembali">Kembali</string>
+    <string name="bagikan">bagikan</string>
+    <string name="bagikan_hasil">Jumlah Orang: %d Orang.\nJenis Zakat: %2$s\nTotal Zakat yang harus dibayar: %s</string>
+    <string name="bagikan_hasi_Profesi">Hasil Perhitungan Zakat Profesi\n\nPendapatan Perbulan:Rp %1$s\nBonus/THR: %2$s\nTotal Zakat: %3$s</string>
     <string name="informasi">Zakat fitrah wajib dibayar oleh setiap muslim sebanyak 2.5 kg beras atau setara dengan uang senilai 2.5 kg beras.</string>
+
+    <string name="pendPerbulan">Pendapatan Perbulan</string>
+    <string name="errorpend">Masukkan pendapatan bulanan</string>
+    <string name="hitungzakat">Hitung Zakat</string>
+    <string name="bonusthr">Bonus, THR dan lainnya</string>
+    <string name="jumlahzakat">Jumlah zakat penghasilan Anda:</string>
+    <string name="jeniszakatfitrah">Jenis Zakat Fitrah</string>
+    <string name="totalzakatfitrah">Total Zakat Fitrah</string>
+    <string name="untukorang">Untuk %1$d Orang</string>
+    <string name="zakat_beras_format">%.1f kg of Beras</string>
+    <string name="zakat_uang_format">Rp %d</string>
+
 </resources>

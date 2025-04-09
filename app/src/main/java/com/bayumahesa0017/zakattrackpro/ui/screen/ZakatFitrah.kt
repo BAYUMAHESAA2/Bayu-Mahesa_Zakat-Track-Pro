@@ -1,5 +1,6 @@
     package com.bayumahesa0017.zakattrackpro.ui.screen
 
+    import android.content.Context
     import android.content.Intent
     import androidx.compose.foundation.layout.Arrangement
     import androidx.compose.foundation.layout.Column
@@ -55,29 +56,26 @@
 
         var typeZakat by remember { mutableStateOf("Beras") }
 
+        val berasText = stringResource(R.string.beras)
+        val uangText = stringResource(R.string.uang)
+
         val jumlahBeras by remember { mutableFloatStateOf(2.5f) }
 
         val jumlahUang by remember { mutableIntStateOf(47000) }
 
         val totalZakat = when (typeZakat) {
-            "Beras" -> "${jumlahBeras * jumlahOrang} Kg Beras"
-            else -> "Rp. ${jumlahUang * jumlahOrang}"
+            berasText -> context.getString(R.string.zakat_beras_format, jumlahBeras * jumlahOrang)
+            else -> context.getString(R.string.zakat_uang_format, jumlahUang * jumlahOrang)
         }
 
-        fun shareResult() {
-            val sharePesan = """
-                Hasil Perhitungan Zakat Fitrah:
-                
-                Jumlah Orang: $jumlahOrang
-                Jenis Zakat: $typeZakat
-                Total Zakat yang harus dibayar adalah: $totalZakat
-            """.trimIndent()
-
-            val intent = Intent(Intent.ACTION_SEND).apply {
+         fun shareResult (context: Context, message: String){
+            val share = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, sharePesan)
+                putExtra(Intent.EXTRA_TEXT, message)
             }
-            context.startActivity(Intent.createChooser(intent, "Bagikan Hasil Zakat Fitrah"))
+            if (share.resolveActivity(context.packageManager) != null){
+                context.startActivity(share)
+            }
         }
 
         Scaffold(
@@ -116,9 +114,15 @@
             },
             floatingActionButton = {
                 ExtendedFloatingActionButton(
-                    onClick = { shareResult() },
+                    onClick = { shareResult(
+                        context = context,
+                        message = context.getString(R.string.bagikan_hasil,
+                            jumlahOrang,
+                            typeZakat,
+                            totalZakat)
+                    ) },
                     icon = { Icon(Icons.Outlined.Share, contentDescription = "Bagikan") },
-                    text = { Text("Bagikan") },
+                    text = { Text(text = stringResource(R.string.bagikan)) },
                     shape = RoundedCornerShape(16.dp),
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary
@@ -140,7 +144,7 @@
                         value = jumlahOrang.toString(),
                         onValueChange = {},
                         readOnly = true,
-                        label = { Text("Jumlah Orang") },
+                        label = { Text(stringResource(R.string.jumlahorang)) },
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -154,7 +158,7 @@
                             DropdownMenuItem(
                                 text = {
                                     Text(
-                                        "$option Orang"
+                                        context.getString(R.string.orang, option)
                                     )
                                 },
                                 onClick = {
@@ -167,7 +171,7 @@
                 }
 
                 Text(
-                    text = "Jenis Zakat Fitrah",
+                    text = stringResource(R.string.jeniszakatfitrah),
                     style = MaterialTheme.typography.titleMedium
                 )
                 Row(
@@ -178,11 +182,11 @@
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
-                            selected = typeZakat == "Beras",
-                            onClick = { typeZakat = "Beras" }
+                            selected = typeZakat == berasText,
+                            onClick = { typeZakat = berasText }
                         )
                         Text(
-                            text = "Beras (2.5Kg)",
+                            text = stringResource(R.string.beras),
                             modifier = Modifier.padding(start = 8.dp)
                         )
                     }
@@ -190,11 +194,11 @@
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
-                            selected = typeZakat == "Uang",
-                            onClick = { typeZakat = "Uang" }
+                            selected = typeZakat == uangText,
+                            onClick = { typeZakat = uangText }
                         )
                         Text(
-                            text = "Uang (Rp. 47000)",
+                            text = stringResource(R.string.uang),
                             modifier = Modifier.padding(start = 8.dp)
                         )
                     }
@@ -211,14 +215,14 @@
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Total Zakat Fitrah"
+                            text = stringResource(R.string.totalzakatfitrah)
                         )
                         Text(
                             text = totalZakat,
                             style = MaterialTheme.typography.headlineMedium
                         )
                         Text(
-                            text = "Untuk $jumlahOrang Orang"
+                            text = context.getString(R.string.untukorang, jumlahOrang)
                         )
                     }
                 }

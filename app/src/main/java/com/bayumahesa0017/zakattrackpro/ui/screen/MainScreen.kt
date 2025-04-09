@@ -99,7 +99,7 @@ fun ScreenContent(modifier: Modifier = Modifier, navController: NavHostControlle
                 )
             ) {
                 Text(
-                    text = "Zakat fitrah"
+                    text = stringResource(R.string.Zakatfitrah_screen)
                 )
             }
             ElevatedButton(
@@ -114,7 +114,7 @@ fun ScreenContent(modifier: Modifier = Modifier, navController: NavHostControlle
                 )
             ) {
                 Text(
-                    text = "Zakat Profesi"
+                    text = stringResource(R.string.ZakatProfesi_screen)
                 )
             }
         }
