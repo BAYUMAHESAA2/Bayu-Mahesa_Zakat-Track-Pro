@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -51,12 +52,11 @@ import java.util.Locale
 fun ZakatProfesi(navController: NavHostController) {
     val context = LocalContext.current
 
-    var pemasukanPerbulan by remember { mutableStateOf("") }
-    var bonus by remember { mutableStateOf("") }
-    var totalZakat by remember { mutableDoubleStateOf(0.0) }
-    var lihatError by remember { mutableStateOf(false) }
+    var pemasukanPerbulan by rememberSaveable { mutableStateOf("") }
+    var bonus by rememberSaveable { mutableStateOf("") }
+    var totalZakat by rememberSaveable { mutableDoubleStateOf(0.0) }
+    var lihatError by rememberSaveable { mutableStateOf(false) }
 
-    // Format angka untuk API 23
     val decimalFormat = remember {
         val formatSymbols = DecimalFormatSymbols(Locale("id", "ID"))
         formatSymbols.groupingSeparator = '.'
@@ -150,7 +150,7 @@ fun ZakatProfesi(navController: NavHostController) {
                     val bonusValue = bonus.toDoubleOrNull() ?: 0.0
                     val totalIncome = income + bonusValue
 
-
+                    // Calculate zakat (2.5% of total income)
                     totalZakat = totalIncome * 0.025
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -166,8 +166,8 @@ fun ZakatProfesi(navController: NavHostController) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        containerColor = Color.LightGray,
+                        contentColor = Color.Black
                     )
                 ) {
                     Column(
